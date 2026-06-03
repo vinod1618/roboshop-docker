@@ -1,0 +1,24 @@
+services:
+  mongodb:
+    build: 
+      dockerfile: mongodb.Dockerfile
+    image: mongodb:1.0.0
+    container_name: mongodb
+
+  catalogue:
+    build: 
+      dockerfile: catalogue.Dockerfile
+    image: catalogue:1.0.0
+    container_name: catalogue
+    depends_on:
+    - mongodb
+
+
+networks:
+  default:
+    driver: bridge
+    name: roboshop
+    external: false
+
+
+  
