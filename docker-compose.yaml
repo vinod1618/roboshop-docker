@@ -8,8 +8,8 @@ services:
 
   catalogue:
     build: 
-      context: .
-      dockerfile: catalogue.Dockerfile
+      context: ./catalogue
+      dockerfile: Dockerfile
     image: catalogue:1.0.0
     container_name: catalogue
     depends_on:
