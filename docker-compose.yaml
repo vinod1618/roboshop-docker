@@ -18,6 +18,7 @@ services:
   user:
     build:
       context: ./user
+      dockerfile: Dockerfile
     image: user:1.0.0
     container_name: user
     depends_on:
@@ -30,6 +31,7 @@ services:
   frontend:
     build:
       context: ./Frontend
+      dockerfile: Dockerfile
     image: frontend:1.0.0
     container_name: frontend
     depends_on:
