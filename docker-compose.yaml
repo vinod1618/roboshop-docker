@@ -1,8 +1,8 @@
 services:
   mongodb:
     build:
-      context: ./mongodb
-      dockerfile: Dockerfile
+      context: ./mongodb   # directory where your Dockerfile is located
+      dockerfile: Dockerfile  # or mongodb.Dockerfile if that’s the name
     image: mongodb:1.0.0
     container_name: mongodb
 
