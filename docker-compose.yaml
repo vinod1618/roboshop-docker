@@ -7,6 +7,14 @@ services:
     container_name: mongodb
     pull_policy: never
 
+  mysql:
+    build: 
+      context: ./mysql
+      dockerfile: Dockerfile
+    image: mysql:1.0.0
+    container_name: mysql
+    pull_policy: never
+
   catalogue:
     build: 
       context: ./catalogue
