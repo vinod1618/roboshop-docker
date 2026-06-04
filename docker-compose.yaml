@@ -27,6 +27,16 @@ services:
     depends_on:
     - redis
 
+  cart:
+    build:
+      context: ./cart
+      dockerfile: Dockerfile
+    image: cart:1.0.0
+    container_name: cart
+    pull_policy: never
+    depends_on:
+    - redis
+
   redis:
     image: redis:7.0
     container_name: redis
@@ -43,6 +53,7 @@ services:
     depends_on:
     - catalogue
     - user
+    - cart
 
 
 networks:
