@@ -5,6 +5,7 @@ services:
       dockerfile: Dockerfile  # or mongodb.Dockerfile if that’s the name
     image: mongodb:1.0.0
     container_name: mongodb
+    pull_policy: never
 
   catalogue:
     build: 
@@ -12,6 +13,7 @@ services:
       dockerfile: Dockerfile
     image: catalogue:1.0.0
     container_name: catalogue
+    pull_policy: never
     depends_on:
     - mongodb
 
@@ -21,6 +23,7 @@ services:
       dockerfile: Dockerfile
     image: user:1.0.0
     container_name: user
+    pull_policy: never
     depends_on:
     - redis
 
@@ -33,7 +36,10 @@ services:
       context: ./Frontend
       dockerfile: Dockerfile
     image: frontend:1.0.0
+    pull_policy: never
     container_name: frontend
+    ports:
+    - "80:80"
     depends_on:
     - catalogue
     - user
