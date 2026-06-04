@@ -34,6 +34,7 @@ services:
     pull_policy: never
     depends_on:
     - mysql
+    - cart
 
   rabbitmq:
     image: rabbitmq:3
@@ -42,7 +43,7 @@ services:
       RABBITMQ_DEFAULT_PASS= roboshop123
     container_name: rabbitmq
 
-    
+
   user:
     build:
       context: ./user
@@ -52,6 +53,27 @@ services:
     pull_policy: never
     depends_on:
     - redis
+    - mongodb
+
+  payment:
+    build:
+      context: ./payment
+      dockerfile: Dockerfile
+    image: payment:1.0.0
+    container_name: payment
+    pull_policy: never
+    environment: 
+      CART_HOST= "cart"
+      CART_PORT= "8080"
+      USER_HOST= "user"
+      USER_PORT= "8080"
+      AMQP_HOST= "rabbitmq"
+      AMQP_USER= "roboshop"
+      AMQP_PASS= "roboshop123"
+    depends_on:
+    - rabbitmq
+    - user
+    - cart
 
   cart:
     build:
@@ -62,6 +84,7 @@ services:
     pull_policy: never
     depends_on:
     - redis
+    - catalogue
 
   redis:
     image: redis:7.0
@@ -80,6 +103,8 @@ services:
     - catalogue
     - user
     - cart
+    - payment
+    - shipping
 
 
 networks:
