@@ -25,6 +25,16 @@ services:
     depends_on:
     - mongodb
 
+  shipping:
+    build: 
+      context: ./shipping
+      dockerfile: Dockerfile
+    image: shipping:1.0.0
+    container_name: shipping
+    pull_policy: never
+    depends_on:
+    - mysql
+
   user:
     build:
       context: ./user
