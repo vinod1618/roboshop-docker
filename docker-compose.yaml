@@ -94,7 +94,7 @@ services:
   redis:
     image: redis:7.0
     container_name: redis
-    Volumes:
+    volumes:
     - redis:/data
 
   frontend:
