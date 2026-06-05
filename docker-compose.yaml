@@ -121,7 +121,7 @@ networks:
     external: false
 
 volumes:
-  mongodb
-  redis
-  mysql
-  rabbitmq
+  mongodb:
+  redis:
+  mysql:
+  rabbitmq:
