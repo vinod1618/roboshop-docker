@@ -3,25 +3,24 @@ services:
     build:
       context: ./mongodb   # directory where your Dockerfile is located
       dockerfile: Dockerfile  # or mongodb.Dockerfile if that’s the name
-    image: mongodb:1.0.0
+    image: vinod1618/mongodb:1.0.0
     container_name: mongodb
-    pull_policy: never
 
   mysql:
     build: 
       context: ./mysql
       dockerfile: Dockerfile
-    image: mysql:1.0.0
+    image: vinod1618/mysql:1.0.0
     container_name: mysql
-    pull_policy: never
+    
 
   catalogue:
     build: 
       context: ./catalogue
       dockerfile: Dockerfile
-    image: catalogue:1.0.0
+    image: vinod1618/catalogue:1.0.0
     container_name: catalogue
-    pull_policy: never
+    
     depends_on:
     - mongodb
 
@@ -29,15 +28,15 @@ services:
     build: 
       context: ./shipping
       dockerfile: Dockerfile
-    image: shipping:1.0.0
+    image: vinod1618/shipping:1.0.0
     container_name: shipping
-    pull_policy: never
+    
     depends_on:
     - mysql
     - cart
 
   rabbitmq:
-    image: rabbitmq:3
+    image: vinod1618/rabbitmq:3
     environment:
       RABBITMQ_DEFAULT_USER: "roboshop"
       RABBITMQ_DEFAULT_PASS: "roboshop123"
@@ -48,9 +47,9 @@ services:
     build:
       context: ./user
       dockerfile: Dockerfile
-    image: user:1.0.0
+    image: vinod1618/user:1.0.0
     container_name: user
-    pull_policy: never
+    
     depends_on:
     - redis
     - mongodb
@@ -59,9 +58,9 @@ services:
     build:
       context: ./payment
       dockerfile: Dockerfile
-    image: payment:1.0.0
+    image: vinod1618/payment:1.0.0
     container_name: payment
-    pull_policy: never
+    
     environment:
       CART_HOST: "cart"
       CART_PORT: "8080"
@@ -79,23 +78,23 @@ services:
     build:
       context: ./cart
       dockerfile: Dockerfile
-    image: cart:1.0.0
+    image: vinod1618/cart:1.0.0
     container_name: cart
-    pull_policy: never
+    
     depends_on:
     - redis
     - catalogue
 
   redis:
-    image: redis:7.0
+    image: vinod1618/redis:7.0
     container_name: redis
 
   frontend:
     build:
       context: ./Frontend
       dockerfile: Dockerfile
-    image: frontend:1.0.0
-    pull_policy: never
+    image: vinod1618/frontend:1.0.0
+    
     container_name: frontend
     ports:
     - "80:80"
