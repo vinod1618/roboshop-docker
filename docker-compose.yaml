@@ -23,8 +23,7 @@ services:
       context: ./catalogue
       dockerfile: Dockerfile
     image: vinod1618/catalogue:1.0.0
-    container_name: catalogue
-    
+    container_name: catalogue    
     depends_on:
     - mongodb
 
@@ -33,8 +32,7 @@ services:
       context: ./shipping
       dockerfile: Dockerfile
     image: vinod1618/shipping:1.0.0
-    container_name: shipping
-    
+    container_name: shipping    
     depends_on:
     - mysql
     - cart
@@ -54,8 +52,7 @@ services:
       context: ./user
       dockerfile: Dockerfile
     image: vinod1618/user:1.0.0
-    container_name: user
-    
+    container_name: user   
     depends_on:
     - redis
     - mongodb
@@ -65,8 +62,7 @@ services:
       context: ./payment
       dockerfile: Dockerfile
     image: vinod1618/payment:1.0.0
-    container_name: payment
-    
+    container_name: payment    
     environment:
       CART_HOST: "cart"
       CART_PORT: "8080"
@@ -85,8 +81,7 @@ services:
       context: ./cart
       dockerfile: Dockerfile
     image: vinod1618/cart:1.0.0
-    container_name: cart
-    
+    container_name: cart    
     depends_on:
     - redis
     - catalogue
@@ -101,8 +96,7 @@ services:
     build:
       context: ./Frontend
       dockerfile: Dockerfile
-    image: vinod1618/frontend:1.0.0
-    
+    image: vinod1618/frontend:1.0.0   
     container_name: frontend
     ports:
     - "80:80"
