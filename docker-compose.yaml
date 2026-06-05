@@ -5,6 +5,8 @@ services:
       dockerfile: Dockerfile  # or mongodb.Dockerfile if that’s the name
     image: vinod1618/mongodb:1.0.0
     container_name: mongodb
+    volumes:
+    - mongodb:/data/db
 
   mysql:
     build: 
@@ -12,6 +14,8 @@ services:
       dockerfile: Dockerfile
     image: vinod1618/mysql:1.0.0
     container_name: mysql
+    volumes:
+    - mysql:/var/lib/mysql
     
 
   catalogue:
@@ -41,6 +45,8 @@ services:
       RABBITMQ_DEFAULT_USER: "roboshop"
       RABBITMQ_DEFAULT_PASS: "roboshop123"
     container_name: rabbitmq
+    volumes:
+    - rabbitmq:/var/lib/rabbitmq
 
 
   user:
@@ -88,6 +94,8 @@ services:
   redis:
     image: redis:7.0
     container_name: redis
+    Volumes:
+    - redis:/data
 
   frontend:
     build:
@@ -111,3 +119,9 @@ networks:
     driver: bridge
     name: roboshop
     external: false
+
+volumes:
+  mongodb
+  redis
+  mysql
+  rabbitmq
