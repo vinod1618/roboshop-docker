@@ -6,7 +6,7 @@ services:
     image: vinod1618/mongodb:1.0.0
     container_name: mongodb
     volumes:
-      - mongodb:/app/db
+      - mongodb:/data/db
 
   mysql:
     build: 
