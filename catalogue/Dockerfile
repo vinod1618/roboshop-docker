@@ -9,7 +9,7 @@
 # CMD ["node","server.js"]
 
 
-FROM node:current-alpine3.23 as builder
+FROM node:current-alpine3.23 AS builder
 #this creats and move to that directory
 WORKDIR /app
 COPY package.json .
@@ -26,4 +26,5 @@ ENV MONGO=true \
 RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
 RUN chown -R roboshop:roboshop /app
 USER roboshop
-CMD ["node","server.js"]
+CMD ["node"]
+ENTRYPOINT ["server.js"]
