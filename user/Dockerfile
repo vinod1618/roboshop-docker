@@ -1,6 +1,6 @@
 FROM node:20
 #this creats and move to that directory
-WORKDIR /app
+WORKDIR /app1
 ENV MONGO=true \
     MONGO_URL="mongodb://mongodb:27017/catalogue" \
     REDIS_URL='redis://redis:6379'
