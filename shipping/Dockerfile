@@ -14,7 +14,7 @@ FROM maven:3.9.14 As builder
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
-RUN mvn clean package && \  # here the && means run the next command only if the previous one succeeds
+RUN mvn clean package && \
     mv target/shipping-1.0.jar shipping.jar
 
 
