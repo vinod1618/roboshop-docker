@@ -12,5 +12,5 @@
 FROM python:3.9.25-alpine3.22
 WORKDIR /app
 # RUN apk add --no-cache build-base linux-headers pcre-dev
-COPY requirements.txt
+COPY requirements.txt .
 RUN pip3 install --prefix=/install -r requirements.txt
